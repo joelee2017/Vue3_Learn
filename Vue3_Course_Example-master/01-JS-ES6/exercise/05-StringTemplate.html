@@ -6,6 +6,17 @@
     <title>字串模板 string template</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      const add = (name, age) => {
+        // return "hi我叫" + name + ", 我今年" + age + "歲";
+
+        // 字串模版支援換行
+        return `
+        我叫${name}, 
+        我今年${age}歲`;
+      };
+
+      console.log(add("joe", 15));
+    </script>
   </body>
 </html>
