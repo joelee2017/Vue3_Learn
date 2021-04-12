@@ -8,7 +8,12 @@
   <body>
     <div id="app">
       <ul>
-        <li v-for="(list, idx) in listArr" v-show="list.show">
+        <!-- 使用v-for 時建議搭配key 做資料繫結，將dom元素與資料拆分 ，key 必須是唯一值-->
+        <li
+          v-for="(list, idx) in listArr"
+          v-bind:key="list.name"
+          v-show="list.show"
+        >
           {{idx + 1}}. {{list.name}}
         </li>
       </ul>
