@@ -7,15 +7,36 @@
   </head>
   <body>
     <div id="app">
-      <h1></h1>
-      <button>Add</button>
-      <button>Remove</button>
+      <h1>{{num}}</h1>
+      <h2>{{NumData.idx}}</h2>
+      <button v-on:click="AddFn">Add</button>
+      <button @click="RemoveFn">Remove</button>
     </div>
     <script src="./js/vue.js"></script>
     <script>
+      const { ref, reactive } = Vue;
       const App = {
         setup() {
-          return {};
+          const num = ref(0);
+
+          const NumData = reactive({ idx: 0 });
+
+          const AddFn = () => {
+            //console.log("1");
+            num.value++;
+
+            NumData.idx++;
+          };
+
+          const RemoveFn = () => {
+            num.value--;
+            NumData.idx--;
+          };
+
+          // 宣告的內容最後一定要回傳出去
+          // ref 使用上會包一層
+          // reactive 在使用上不需要.value
+          return { num, AddFn, NumData, RemoveFn };
         },
       };
       Vue.createApp(App).mount("#app");
