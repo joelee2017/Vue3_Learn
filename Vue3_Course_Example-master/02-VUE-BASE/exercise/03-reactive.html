@@ -7,13 +7,18 @@
   </head>
   <body>
     <div id="app">
-      <h1></h1>
+      <h1>{{message.text}}</h1>
     </div>
     <script src="./js/vue.js"></script>
     <script>
+      const { reactive } = Vue;
       const App = {
         setup() {
-          return {};
+          // reactive 只接受物件或陣列
+          const message = reactive({ text: "joe" });
+          return {
+            message,
+          };
         },
       };
       Vue.createApp(App).mount("#app");
