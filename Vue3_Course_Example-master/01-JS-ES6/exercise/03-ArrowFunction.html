@@ -8,6 +8,19 @@
   <body>
     <a id="aLink1" href="javascript:;">Click1</a>
     <a id="aLink2" href="javascript:;">Click2</a>
-    <script></script>
+    <script>
+      document.getElementById("aLink1").addEventListener("click", function () {
+        console.log("aLink1");
+        console.log(this);
+      });
+
+      document.getElementById("aLink2").addEventListener("click", (e) => {
+        // => 無法指向this 該功能只是代替 funciton
+        // 需用函式回傳參數方式取得 e.target
+        console.log("aLink2");
+        console.log(this);
+        console.log(e.target);
+      });
+    </script>
   </body>
 </html>

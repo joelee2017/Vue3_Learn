@@ -13,9 +13,11 @@
         address: "Taiwan",
       };
 
+      // 省略過去使用物件下的屬性需要用點的方式，使用起來更加直覺
       const { name, age, address } = (user = data);
       console.log(name, age, address);
 
+      // 直接將物件賦予到另一個物件之中名稱也會一樣
       const userData = {
         user,
         sex: "boy",
