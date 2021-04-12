@@ -6,12 +6,23 @@
     <title>howToSelect</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">{{text}} {{message.text}}</div>
     <script src="./js/vue.js"></script>
     <script>
+      const { ref, reactive } = Vue;
       const App = {
         setup() {
-          return {};
+          // ref 可以接受全部型別的參數，單純值時使用
+          const text = ref("hello vue!");
+
+          // reactive 只能接受物件或陣列，需要多層監控時使用
+          // 譬如：物件包件物，物件包陣列時
+          const message = reactive({ text: "joe" });
+
+          return {
+            text,
+            message,
+          };
         },
       };
       Vue.createApp(App).mount("#app");
