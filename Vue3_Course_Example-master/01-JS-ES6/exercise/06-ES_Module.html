@@ -6,6 +6,15 @@
     <title>ES Module</title>
   </head>
   <body>
-    <script></script>
+    <!-- ie 完全不支援 ES Module  註!! vue3本身不支援IE-->
+    <!-- module 使用需要在 script 標籤上先進行type上的註名為 module -->
+    <script type="module">
+      // 透過 import 方式叫用外部檔案
+      import Add, { Name, age, Remove } from "./js/Tools.js";
+
+      console.log(Add(1, 2));
+      console.log(Name, age);
+      console.log(Remove(5, 2));
+    </script>
   </body>
 </html>
