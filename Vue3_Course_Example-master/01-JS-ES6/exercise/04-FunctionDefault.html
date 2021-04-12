@@ -6,6 +6,15 @@
     <title>Function Default</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      const ArrToStr = (arr = []) => {
+        // es6 後可直接在函數傳參位置做預設值
+        // if (!arr) arr = [];
+        const mapStr = arr.map((item) => item + "");
+        return mapStr;
+      };
+      console.log(ArrToStr([1, 2, 3]));
+      console.log(ArrToStr([]));
+    </script>
   </body>
 </html>
