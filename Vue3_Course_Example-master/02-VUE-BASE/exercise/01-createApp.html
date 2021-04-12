@@ -6,8 +6,19 @@
     <title>createApp & setup</title>
   </head>
   <body>
+    <!-- 掛載的元素必需是在 body 內用 div 包起 -->
     <div id="app"></div>
     <script src="./js/vue.js"></script>
-    <script></script>
+    <script>
+      const App = {
+        // vue3 用 setup 來操作、事件、方法、數據.....並用 return 方式回傳
+        setup() {
+          return {};
+        },
+      };
+
+      // vue3  採用以下方式創建實體
+      Vue.createApp(App).mount("#app");
+    </script>
   </body>
 </html>
