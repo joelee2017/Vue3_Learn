@@ -18,15 +18,24 @@
     </div>
     <script src="./js/vue.js"></script>
     <script>
-      const { reactive } = Vue;
+      const { reactive, readonly } = Vue;
       const App = {
         setup() {
           const Num = reactive({ idx: 0 });
+          // readonly 狀態時，是無法被修改
+          const copyNum = readonly(Num);
+
           const AddFn = () => {
             Num.idx++;
+
+            console.log("Num=>", Num);
+            console.log("copyNum=>", copyNum);
           };
 
-          const Test = () => {};
+          const Test = () => {
+            console.log("copyNum=>", copyNum);
+            copyNum++;
+          };
 
           return { Num, AddFn, Test };
         },
