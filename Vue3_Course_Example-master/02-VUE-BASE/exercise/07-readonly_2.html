@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>readonly</title>
+    <style>
+      button {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{Num}}</h1>
+      <button @click="AddFn">Add</button>
+      <button @click="Test">Add copy</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+      const { ref, readonly } = Vue;
+      const App = {
+        setup() {
+          const Num = ref(0);
+          // readonly 狀態時，是無法被修改
+          const copyNum = readonly(Num);
+
+          const AddFn = () => {
+            Num.value++;
+
+            console.log("Num=>", Num);
+            console.log("copyNum=>", copyNum);
+          };
+
+          const Test = () => {
+            console.log("copyNum=>", copyNum);
+            copyNum.value++;
+          };
+
+          return { Num, AddFn, Test };
+        },
+      };
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
