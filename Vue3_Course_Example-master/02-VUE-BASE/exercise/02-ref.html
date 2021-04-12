@@ -7,13 +7,26 @@
   </head>
   <body>
     <div id="app">
-      <h1></h1>
+      <h1>{{text}}</h1>
     </div>
     <script src="./js/vue.js"></script>
     <script>
+      // 先用解構宣告 ref 了，就不需要在使用 Vue.ref()的方式
+      const { ref } = Vue;
       const App = {
         setup() {
-          return {};
+          // 一般透過ref 方式給值
+          // const text = Vue.ref("hello vue");
+
+          // 上方已解構
+          const text = ref("hello vue");
+          setTimeout(() => {
+            // 再給值
+            text.value = "joe";
+
+            console.log(text);
+          }, 1000);
+          return { text };
         },
       };
       Vue.createApp(App).mount("#app");
