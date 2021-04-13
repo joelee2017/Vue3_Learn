@@ -60,13 +60,13 @@
   <body>
     <div id="app">
       <a @click="HandListShow" class="title">課程列表</a>
-      <ul class="box">
+      <ul class="box" :style="{height:  domH}">
         <li v-for="(list, idx) in listArr" :key="list">{{list.name}}</li>
       </ul>
     </div>
     <script src="./js/vue.js"></script>
     <script>
-      const { ref, reactive } = Vue;
+      const { ref, reactive, computed } = Vue;
       const App = {
         setup() {
           const isOpen = ref(true);
@@ -83,12 +83,21 @@
 
           const HandListShow = () => {
             isOpen.value = !isOpen.value;
+            console.log(isOpen.value);
           };
+
+          const domH = computed(() => {
+            if (isOpen.value) {
+              return `${listArr.length * 40} px`;
+            }
+            return 0;
+          });
 
           return {
             isOpen,
             listArr,
             HandListShow,
+            domH,
           };
         },
       };
