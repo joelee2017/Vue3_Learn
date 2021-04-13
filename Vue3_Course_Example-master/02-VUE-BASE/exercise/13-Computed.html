@@ -87,10 +87,7 @@
           };
 
           const domH = computed(() => {
-            if (isOpen.value) {
-              return `${listArr.length * 40} px`;
-            }
-            return 0;
+            return isOpen.value ? `${listArr.length * 40}px` : "0px";
           });
 
           return {
