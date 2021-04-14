@@ -60,7 +60,7 @@
   <body>
     <div id="app">
       <a @click="HandListShow" class="title">課程列表</a>
-      <ul class="box" :style="{height:  domH}">
+      <ul class="box" :style="{height:  domFn()}">
         <li v-for="(list, idx) in listArr" :key="list">{{list.name}}</li>
       </ul>
     </div>
@@ -86,15 +86,22 @@
             console.log(isOpen.value);
           };
 
+          // 資料進行緩存，資料源是否被修改決定是否被執行
           const domH = computed(() => {
             return isOpen.value ? `${listArr.length * 40}px` : "0px";
           });
+
+          // 資料不會進行緩存，每次都會重新執行，但可傳入參數
+          const domFn = () => {
+            return isOpen.value ? `${listArr.length * 40}px` : "0px";
+          };
 
           return {
             isOpen,
             listArr,
             HandListShow,
             domH,
+            domFn,
           };
         },
       };
