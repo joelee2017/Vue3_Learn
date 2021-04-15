@@ -19,6 +19,24 @@
           const refObj = ref({ idx: 0 });
           const reactiveObj = reactive({ idx: 0 });
 
+          // ref 要透過額外使用函式監控，單一的值
+          watch(
+            () => refObj.value.idx,
+            (newVal) => {
+              console.log("ref:", newVal);
+            }
+          );
+
+          //  reactive 可監控深層
+          watch(reactiveObj, (newVal) => {
+            console.log("reactive:", newVal);
+          });
+
+          setTimeout(() => {
+            refObj.value.idx = 1;
+            reactiveObj.idx = 1;
+          }, 1000);
+
           return { refObj, reactiveObj };
         },
       };
