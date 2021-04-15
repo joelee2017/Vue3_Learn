@@ -15,11 +15,21 @@
         setup() {
           const data = ref({ user: {} });
 
-          watch(data, (newVal) => {
-            console.log(newVal);
-          });
+          // { deep: true }接下來的資料都要做深層的監控
+          // deep會針對每個物件都做掃描所以消耗效能大
+          // 其餘時請單一針對監控不使用 deep
+          // deep使用情境為需要對大範圍整包物件/陣列做深層監控時才用
+          watch(
+            data,
+            (newVal) => {
+              console.log(newVal);
+            },
+            { deep: true }
+          );
 
-          setTimeout(() => {}, 1000);
+          setTimeout(() => {
+            data.value.user["name"] = "joe";
+          }, 1000);
 
           return {};
         },
