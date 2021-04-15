@@ -61,7 +61,7 @@
     <div id="app">
       <a @click="HandListShow" class="title">課程列表</a>
       <ul class="box" :style="{height: BoxHeight}">
-        <li v-for="(list, idx) in listArr" :key="list">
+        <li v-for="(list, idx) in filterData" :key="list.money">
           {{idx + 1}}. {{list.name}} => ${{list.money}}
         </li>
       </ul>
@@ -83,19 +83,28 @@
             { name: "現代 JavaScript 職人之路｜面試篇", money: 1800 },
           ]);
 
+          //  computed 使用 reactive 包裝後的資料，也要加上.value
           const BoxHeight = computed(() => {
-            return isOpen.value ? `${listArr.length * 40}px` : "0px";
+            console.log(filterData);
+            return isOpen.value ? `${filterData.value.length * 40}px` : "0px";
           });
 
           const HandListShow = () => {
             isOpen.value = !isOpen.value;
           };
+          // v-for v-if 不能搭配使用，請改用 computed，因為會有優先順序問題
+          // v-if 優先於v-for
+          const filterData = computed(() => {
+            const filter = listArr.filter((item) => item.money > 500);
+            return filter;
+          });
 
           return {
             isOpen,
             listArr,
             HandListShow,
             BoxHeight,
+            filterData,
           };
         },
       };
