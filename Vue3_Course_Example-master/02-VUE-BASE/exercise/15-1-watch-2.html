@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watch</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+      const { ref, reactive, watch } = Vue;
+      const App = {
+        setup() {
+          const idx = ref(0);
+          const data = reactive({ idx: 0 });
+          //watch(idx, (newIdx, oldIdx) => {
+          //   console.log("new:", newIdx, "old:", oldIdx);
+          // });
+
+          // watch 只能被讀取的值 getter/effect function
+          // reactive 需要透過函數進行讀取回傳目標中的KEY
+          watch(
+            () => data.idx,
+            (newIdx, oldIdx) => {
+              console.log("new:", newIdx, "old:", oldIdx);
+            }
+          );
+
+          setInterval(() => {
+            // idx.value++;
+            data.idx++;
+          }, 1000);
+          return {};
+        },
+      };
+
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
