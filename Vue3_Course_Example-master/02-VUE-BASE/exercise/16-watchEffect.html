@@ -10,13 +10,27 @@
 
     <script src="./js/vue.js"></script>
     <script>
-      const { ref, reactive } = Vue;
+      const { ref, reactive, watchEffect } = Vue;
       const App = {
         setup() {
           const num = ref(0);
           const numData = reactive({ idx: 0 });
+          let timer = null;
+          // 使用時一開始就會先執行一次，等到資料改變被觸發後會再次執行
+          // 若監測目標實際未執行，一開始時也會執行給予初始值，但之後不會在觸發
+          // 要透過改變資料的方式觸發watchEffect一定要在之中放入被改變的資料
+          // watchEffect 可以被中斷停止
+          const stop = watchEffect(() => {
+            console.log(num.value);
+            console.log(numData.idx);
+            if (num.value >= 4) {
+              stop(); // 關閉停止 watchEffect
+              clearInterval(timer); // 關閉setInterval
+            }
+          });
 
-          setTimeout(() => {
+          timer = setInterval(() => {
+            //當改變觸發時watchEffect內的相關成員就會被執行
             num.value++;
             numData.idx++;
           }, 1000);
