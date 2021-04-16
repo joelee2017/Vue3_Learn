@@ -59,6 +59,11 @@
     <script>
       const app = {
         setup() {
+          axios
+            .get("https://vue-lessons-api.herokuapp.com/photo/list ")
+            .then((res) => {
+              console.log(res.data);
+            });
           return {};
         },
       };
