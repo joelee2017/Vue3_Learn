@@ -15,6 +15,7 @@
       const { ref, onBeforeMount, onMounted, onUpdated } = Vue;
       const App = {
         setup() {
+          console.log("當vue掛載到app上面後執行");
           const idx = ref(0);
           setTimeout(() => {
             idx.value = 1;
@@ -30,6 +31,7 @@
           });
           onUpdated(() => {
             // 在資料更改導致virtual DOM重新渲染後調用
+            // 當html 的dom 元素被變動重新渲染完後調用
             console.log("資料更改後");
           });
 
