@@ -57,18 +57,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="./js/vue.js"></script>
     <script>
-      const { onMounted } = Vue;
       const app = {
         setup() {
-          // 渲染完成後在打API
-          onMounted(() => {
-            axios
-              .get("https://vue-lessons-api.herokuapp.com/photo/list ")
-              .then((res) => {
-                console.log(res.data);
-              });
-          });
-
+          axios
+            .get("https://vue-lessons-api.herokuapp.com/photo/list ")
+            .then((res) => {
+              console.log(res.data);
+            });
           return {};
         },
       };

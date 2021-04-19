@@ -45,7 +45,13 @@
     <div id="app">
       <div class="box">
         <div>
-          <img class="img" src="" alt="" />
+          <img
+            v-for="item in imgArr.arr"
+            :key="item.url"
+            class="img"
+            :src="item.url"
+            alt=""
+          />
         </div>
         <div class="btnbox">
           <a href="javascript:;">上一張</a>
@@ -57,19 +63,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="./js/vue.js"></script>
     <script>
-      const { onMounted } = Vue;
+      const { onMounted, reactive } = Vue;
       const app = {
         setup() {
+          const imgArr = reactive({ arr: [] });
+
           // 渲染完成後在打API
           onMounted(() => {
             axios
               .get("https://vue-lessons-api.herokuapp.com/photo/list ")
               .then((res) => {
-                console.log(res.data);
+                imgArr.arr = res.data;
+                console.log(imgArr.arr);
               });
           });
 
-          return {};
+          return { imgArr };
         },
       };
       Vue.createApp(app).mount("#app");
