@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO</title>
+    <link rel="stylesheet" href="./css/19-todo.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="wait">
+        <ul>
+          <li
+            v-for="(item, idx) in todoWait.content"
+            :key="item.url"
+            @click="handClick(item,idx)"
+          >
+            <img :src="item.url" alt="" />
+          </li>
+        </ul>
+      </div>
+      <div class="carried">
+        <ul>
+          <li
+            v-for="(item, idx) in todoOver.content"
+            :key="item.url"
+            @click="resetClick(item,idx)"
+          >
+            <img :src="item.url" alt="" />
+          </li>
+        </ul>
+      </div>
+      <div :class="['winPage',{open:isWin}]">
+        <h1>闖關成功</h1>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script>
+      const { reactive, onMounted, watch, ref } = Vue;
+      const app = {
+        setup() {
+          // 初始化拼圖
+          const todoWait = reactive({ content: [] });
+
+          // 移動後的拼圖
+          const todoOver = reactive({ content: [] });
+
+          const winIdx = ref(0);
+          const isWin = ref(false);
+          watch(
+            () => todoOver.content,
+            (newArr) => {
+              //一開始等於0
+              winIdx.value = 0;
+              // console.log(newArr);
+              newArr.forEach((item, idx) => {
+                // 如果拼圖順序正確即執行
+                if (item.idx === idx) {
+                  //console.log("ok");
+                  winIdx.value++;
+                }
+              });
+            },
+            { deep: true }
+          );
+
+          watch(winIdx, (newVal) => {
+            if (winIdx.value === 9) {
+              // console.log("you win");
+              isWin.value = true;
+            }
+          });
+
+          const resetClick = (item, idx) => {
+            todoWait.content.push(item);
+            todoOver.content.splice(idx, 1);
+          };
+
+          const handClick = (item, idx) => {
+            todoOver.content.push(item);
+            todoWait.content.splice(idx, 1);
+          };
+
+          onMounted(() => {
+            axios.get("./api/puzzle.json").then((res) => {
+              todoWait.content = res.data;
+              console.log(res.data);
+            });
+          });
+
+          return { todoWait, todoOver, handClick, resetClick, isWin };
+        },
+      };
+      Vue.createApp(app).mount("#app");
+    </script>
+  </body>
+</html>
