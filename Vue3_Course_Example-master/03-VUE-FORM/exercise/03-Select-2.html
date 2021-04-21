@@ -20,11 +20,14 @@
             {{item.name}}
           </option>
         </select>
-        <select>
+        <select v-model="areaActive">
           <option disabled value="">請選擇區域</option>
+          <option v-for="item in twZip.area" :key="item.name" :value="item.zip">
+            {{item.name}}
+          </option>
         </select>
       </div>
-      <a class="btn">送出</a>
+      <a class="btn" @click="handSubmit">送出</a>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="./js/vue.js"></script>
@@ -33,12 +36,24 @@
       const App = {
         setup() {
           const twZip = reactive({ city: [], area: [] });
+          // 透過繫結設定初始值
           const cityActive = ref("");
           const areaActive = ref("");
 
+          // 切換city 時監控
           watch(cityActive, (newCity) => {
-            console.log(newCity);
+            const newArr = twZip.city.filter((city) => city.name === newCity);
+            //每選一次都要先清空下層值，回到預設
+            areaActive.value = "";
+
+            twZip.area = newArr[0].area;
+            console.log(newArr[0].area);
           });
+          const handSubmit = () => {
+            console.log(cityActive.value);
+            console.log(areaActive.value);
+          };
+
           onMounted(() => {
             axios
               .get("https://vue-lessons-api.herokuapp.com/city/list ")
@@ -47,7 +62,7 @@
                 console.log(twZip.city);
               });
           });
-          return { twZip, cityActive };
+          return { twZip, cityActive, areaActive, handSubmit };
         },
       };
 
