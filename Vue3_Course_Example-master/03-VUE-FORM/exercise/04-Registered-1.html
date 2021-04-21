@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="app">
-      <div>
+      <div v-if="!isreg">
         <div class="input-box">
           <p>NAME</p>
           <input
@@ -55,9 +55,9 @@
           <input type="checkbox" id="checkbox" v-model="registered.terms" />
           <label for="checkbox">我已閱讀使用者條款</label>
         </div>
-        <a class="btn">送出</a>
+        <a @click="handSubmit" class="btn">送出</a>
       </div>
-      <div>
+      <div v-if="isreg">
         <h1>註冊成功</h1>
       </div>
     </div>
@@ -74,9 +74,10 @@
       }
      -->
     <script>
-      const { reactive } = Vue;
+      const { ref, reactive } = Vue;
       const app = {
         setup() {
+          const isreg = ref(false);
           const registered = reactive({
             username: "",
             password: "",
@@ -86,7 +87,22 @@
             terms: false,
           });
 
-          return { registered };
+          const handSubmit = () => {
+            axios
+              .post(
+                "https://vue-lessons-api.herokuapp.com/auth/registered ",
+                registered
+              )
+              .then((response) => {
+                isreg.value = true;
+                console.log(response);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          };
+
+          return { registered, handSubmit, isreg };
         },
       };
 
