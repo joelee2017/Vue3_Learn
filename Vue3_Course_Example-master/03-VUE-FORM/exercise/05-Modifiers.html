@@ -22,15 +22,18 @@
   <body>
     <div id="app">
       <div class="input-box">
-        <input type="text" placeholder="lazy" v-model="lazyVal" />
+        <!-- lazy 焦點離開時資料才會同步 -->
+        <input type="text" placeholder="lazy" v-model.lazy="lazyVal" />
         <p>{{lazyVal}}</p>
       </div>
       <div class="input-box">
-        <input type="text" placeholder="number" v-model="numberVal" />
+        <!-- number 資料轉成數字 -->
+        <input type="text" placeholder="number" v-model.number="numberVal" />
         <p>{{numberVal}}</p>
       </div>
       <div class="input-box">
-        <input type="text" placeholder="trim" v-model="trimVal" />
+        <!-- trim去前尾空格 -->
+        <input type="text" placeholder="trim" v-model.trim="trimVal" />
         <p>{{trimVal}}</p>
       </div>
     </div>
