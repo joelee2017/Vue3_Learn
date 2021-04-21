@@ -11,20 +11,27 @@
     <div id="app">
       <div>
         <ul>
-          <li>
-            <input type="checkbox" />
-            <label for=""></label>
+          <!-- v-model 繫結之後，點擊checkbox，可以直接將value 寫入到 model 之中，即可透過 selectArr 取得所有已選取值 -->
+          <li v-for="item in courseslist.tags" :key="item.tag">
+            <input
+              type="checkbox"
+              :id="item.tag"
+              :value="item.tag"
+              v-model="courseslist.selectArr"
+            />
+            <label :for="item.tag">{{item.tag}}</label>
           </li>
         </ul>
-        <a class="btn">送出</a>
+        <a class="btn" @click="handSubmit">送出</a>
       </div>
     </div>
     <script src="./js/vue.js"></script>
     <script>
-      const { reactive } = Vue;
+      const { ref, reactive } = Vue;
       const App = {
         setup() {
           const courseslist = reactive({
+            selectArr: [],
             tags: [
               { tag: "JavaScript" },
               { tag: "Html" },
@@ -37,7 +44,11 @@
               { tag: "Canvas" },
             ],
           });
-          return { courseslist };
+
+          const handSubmit = () => {
+            console.log(courseslist.selectArr);
+          };
+          return { courseslist, handSubmit };
         },
       };
 
