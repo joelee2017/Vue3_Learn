@@ -1,12 +1,13 @@
 <script>
+import Header from "./components/Header";
 export default {
-
+  components:{
+    Header,
+  }
 }
 </script>
 <template>
-  <div>
-      <h1>joe</h1>
-  </div>
+  <Header/>
 </template>
 <style>
 h1{
