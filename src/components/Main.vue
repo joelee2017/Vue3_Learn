@@ -32,16 +32,16 @@ main > .mid > div {
 }
 .box1 {
   cursor: pointer;
-  background-image: url("../images/rightbtn2.jpg");
+  background-image: url("~@/assets/images/rightbtn2.jpg");
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
 .box2 {
-  background-image: url("../images/r1.jpg");
+  background-image: url("~@/assets//images/r1.jpg");
   background-size: cover;
 }
 .box3 {
-  background-image: url("../images/r2.jpg");
+  background-image: url("~@/assets/images/r2.jpg");
   background-size: cover;
 }
 </style>

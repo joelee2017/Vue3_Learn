@@ -42,7 +42,7 @@ aside > .mid > a {
   height: 100%;
   float: right;
   background-color: #bc3183;
-  background-image: url("../images/rightbtn.jpg");
+  background-image: url("~@/assets/images/rightbtn.jpg");
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }

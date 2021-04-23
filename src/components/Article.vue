@@ -18,7 +18,7 @@ export default {
 article {
   width: 100%;
   height: 578px;
-  background-image: url("../images/banner.png");
+  background-image: url("~@/assets/images/banner.png");
   background-size: cover;
 
   display: flex;
