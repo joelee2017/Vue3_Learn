@@ -1,13 +1,22 @@
 <script>
+import { ref } from 'vue'
 export default {
-
+  setup(){
+    const isOpen=ref(false);
+    const HandMenuOpen =()=>{
+      isOpen.value = !isOpen.value;
+    }
+    return{
+isOpen,HandMenuOpen
+    }
+  }
 }
 </script>
 <template>
-        <header :class="openMenu">
+        <header :class="{openMenu:isOpen}">
         <nav>
           <h1>Mike</h1>
-          <a id="moblie_menu"  href="javascript:;"></a>
+          <a id="moblie_menu" @click="HandMenuOpen"  href="javascript:;"></a>
           <div>
             <a href="javascript:;">RWD</a>
             <a href="javascript:;">VUEJS</a>

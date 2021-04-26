@@ -40,34 +40,57 @@ export default {
         </div>
       </footer>
 </template>
-<style>
+<style lang="scss">
 footer {
   width: 100%;
   height: 562px;
   background-color: #ebebeb;
-}
-footer > div {
+  > div {
   width: 1024px;
   height: 100%;
   margin: 0 auto;
+  @media screen and (max-width: 1044px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 640px) {
+     width: 100%;
+    height: auto;
+    overflow: hidden;
+    background-color: #ebebeb;
+  }
+}
 }
 .left_box {
   width: 50%;
   height: 100%;
   float: left;
   padding-top: 3%;
+  @media screen and (max-width: 640px) {
+     width: 100%;
+    float: none;
+    padding-top: 0%;
+  }
+  > h4 {
+  color: #088ca5;
+  font-size: 30px;
+  padding: 15% 11% 3% 11%;
+   @media screen and (max-width: 640px) {
+      color: #088ca5;
+    font-size: 30px;
+    padding: 15% 11% 3% 11%;
+   }
+}
 }
 .right_box {
   width: 50%;
   height: 100%;
   float: right;
   padding-top: 15.5%;
-}
-
-.left_box > h4 {
-  color: #088ca5;
-  font-size: 30px;
-  padding: 15% 11% 3% 11%;
+   @media screen and (max-width: 640px) {
+      width: 100%;
+    float: none;
+    padding-top: 0%;
+   }
 }
 
 .left_box > p,
@@ -77,4 +100,41 @@ footer > div {
   padding: 20px 11%;
   text-align: justify;
 }
+
+// footer {
+//   width: 100%;
+//   height: 562px;
+//   background-color: #ebebeb;
+// }
+// footer > div {
+//   width: 1024px;
+//   height: 100%;
+//   margin: 0 auto;
+// }
+// .left_box {
+//   width: 50%;
+//   height: 100%;
+//   float: left;
+//   padding-top: 3%;
+// }
+// .right_box {
+//   width: 50%;
+//   height: 100%;
+//   float: right;
+//   padding-top: 15.5%;
+// }
+
+// .left_box > h4 {
+//   color: #088ca5;
+//   font-size: 30px;
+//   padding: 15% 11% 3% 11%;
+// }
+
+// .left_box > p,
+// .right_box > p {
+//   color: #515151;
+//   font-size: 14px;
+//   padding: 20px 11%;
+//   text-align: justify;
+// }
 </style>
