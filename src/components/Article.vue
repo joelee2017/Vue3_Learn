@@ -7,7 +7,6 @@ export default {
    <article>
         <div>
           <h3>Responsive Web Design</h3>
-           <h6>Test</h6>
           <p>
             選用對的html5標籤除了在閱讀 html
             原始碼更加順暢外，也有助於google搜尋引擎排名順序，SEO效果的提升
