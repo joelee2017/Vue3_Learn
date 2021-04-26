@@ -15,7 +15,8 @@ isOpen,HandMenuOpen
 <template>
         <header :class="{openMenu:isOpen}">
         <nav>
-          <h1>Mike</h1>
+          <h1>Joe</h1>
+          <h6>Test</h6>
           <a id="moblie_menu" @click="HandMenuOpen"  href="javascript:;"></a>
           <div>
             <a href="javascript:;">RWD</a>
@@ -27,7 +28,11 @@ isOpen,HandMenuOpen
         </nav>
       </header>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
+h6{
+  color: greenyellow;
+  font-size: 40px;
+}
 header {
   background-color: #373c3f;
   width: 100%;
