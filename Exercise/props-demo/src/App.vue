@@ -1,18 +1,23 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import PropsTest from"@/components/PropsTest.vue"
+import { ref } from 'vue'
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  components:{
+    PropsTest,
+  },
+  setup(){
+    const data =ref("hello joe!!");
+    return{
+      data
+    }
   }
 }
 </script>
+<template>
+<!-- 自訂義屬性名稱：msg -->
+  <PropsTest :msg="data"/>
+</template>
 
 <style lang="scss">
 #app {
