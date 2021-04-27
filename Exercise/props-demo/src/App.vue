@@ -15,8 +15,8 @@ export default {
 }
 </script>
 <template>
-<!-- 自訂義屬性名稱：msg -->
-  <PropsTest :msg="data"/>
+<!-- 自訂義屬性名稱：msg ，txt沒用bind方式只能寫字串，而且不能用動態方式 -->
+  <PropsTest :msg="data" txt="123456abcd" />
 </template>
 
 <style lang="scss">

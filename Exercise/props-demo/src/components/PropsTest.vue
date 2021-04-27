@@ -7,7 +7,8 @@ export default {
         msg:{
             type:String, //註名型別
             default:"my name is Joe", //預設值
-        }
+        },
+        txt:String
     },
     // 一定要透過setup帶參數回傳上西參數
     setup(props){
@@ -20,7 +21,7 @@ export default {
 </script>
 <template>
 <!-- 取出上層傳值 -->
-    <h1>{{props.msg}}</h1>
+    <h1>{{props.msg}} {{props.txt}}</h1>
 </template>
 <style>
 h1{
