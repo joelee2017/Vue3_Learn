@@ -2,22 +2,28 @@
 <script>
 import TitleBar from "@/components/TitleBar.vue"
 import ListItem from "@/components/ListItem.vue"
+import { ref } from 'vue';
 export default {
   components:{
     TitleBar,
     ListItem
   },
   setup(){    
+    //共用參數建議放在父層上，傳於子層時較方便。
+     const isOpen = ref(true);
+    const handOpenClass = () => {
+        isOpen.value = !isOpen.value;
+        console.log(isOpen.value);
+      };
     return{
-      TitleBar,
-      ListItem
+      isOpen,handOpenClass
     }
   }
 }
 </script>
 <template>
- <TitleBar/>
- <ListItem/>
+ <TitleBar :handOpenClass="handOpenClass" />
+ <ListItem :isOpen="isOpen" />
 </template>
 
 <style lang="scss">

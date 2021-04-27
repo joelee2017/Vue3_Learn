@@ -1,10 +1,21 @@
 <script>
-export default {
+export default {    
+    props:{
+        handOpenClass:{
+            type:Function,
+            default:()=>{}
+        }
+    },
+    setup(props){
+        return{
+           props 
+        }
+    }
     
 }
 </script>
 <template>
-      <a  class="title">課程列表</a>
+      <a class="title" @click="props.handOpenClass">課程列表</a>
 </template>
 <style>
  .title {
