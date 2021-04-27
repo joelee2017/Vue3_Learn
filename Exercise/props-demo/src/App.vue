@@ -1,51 +1,44 @@
 
 <script>
-import PropsTest from"@/components/PropsTest.vue"
-import { reactive, ref } from 'vue'
+import TitleBar from "@/components/TitleBar.vue"
+import ListItem from "@/components/ListItem.vue"
 export default {
   components:{
-    PropsTest,
+    TitleBar,
+    ListItem
   },
-  setup(){
-    //不同型別傳值
-    const str =ref("hello joe!!");
-    const bool =ref(true)
-    const num =ref(0)
-    const arr = reactive([])
-    const obj = reactive([])
-    const handclickfn = ()=>{
-
-    }
+  setup(){    
     return{
-      str,
-      bool,
-      num,
-      arr,
-      obj,
-      handclickfn
+      TitleBar,
+      ListItem
     }
   }
 }
 </script>
 <template>
-<!-- 自訂義屬性名稱：msg ，txt沒用bind方式只能寫字串，而且不能用動態方式 -->
-  <PropsTest  txt="123456abcd"
-    :str="str"
-    :bool="bool"
-    :num="num"
-    :arr="arr"
-    :obj="obj"
-    :handclickfn="handclickfn"
-   />
+ <TitleBar/>
+ <ListItem/>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: slategray;
+      }
+      #app {
+        width: 400px;
+        overflow: hidden;
+        border: 1px solid #42b983;
+        border-radius: 10px;
+      }
 </style>
