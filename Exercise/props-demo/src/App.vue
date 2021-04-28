@@ -2,11 +2,13 @@
 <script>
 import TitleBar from "@/components/TitleBar.vue"
 import ListItem from "@/components/ListItem.vue"
+import EmitTest from "@/components/EmitTest.vue"
 import { ref } from 'vue';
 export default {
   components:{
     TitleBar,
-    ListItem
+    ListItem,
+    EmitTest
   },
   setup(){    
     //共用參數建議放在父層上，傳於子層時較方便。
@@ -15,8 +17,10 @@ export default {
         isOpen.value = !isOpen.value;
         console.log(isOpen.value);
       };
+
+      const handCallBackFn = (num)=>{console.log("app=>", num)};
     return{
-      isOpen,handOpenClass
+      isOpen,handOpenClass,handCallBackFn
     }
   }
 }
@@ -24,6 +28,7 @@ export default {
 <template>
  <TitleBar :handOpenClass="handOpenClass" />
  <ListItem :isOpen="isOpen" />
+ <EmitTest @CallBack="handCallBackFn" />
 </template>
 
 <style lang="scss">
