@@ -8,30 +8,61 @@ import { ref } from 'vue';
 export default {
   components:{ TitleBar,  ListItem,  EmitTest,  TimerBox },
   setup(){    
-    //共用參數建議放在父層上，傳於子層時較方便。
-    const isOpen = ref(true);
-    const handOpenClass = () => {
-        isOpen.value = !isOpen.value;
-        console.log(isOpen.value);
-      };
 
-    const handCallBackFn = (num)=>{ console.log("app=>", num) };
-    const handTimeOut =(num)=>{ console.log("time is over", num.value); };
+    const isAmin = ref(false);
+    //共用參數建議放在父層上，傳於子層時較方便。
+    // const isOpen = ref(true);
+    // const handOpenClass = () => {
+    //     isOpen.value = !isOpen.value;
+    //     console.log(isOpen.value);
+    //   };
+
+    // const handCallBackFn = (num)=>{ console.log("app=>", num) };
+    // const handTimeOut =(num)=>{ console.log("time is over", num.value); };
+
+    const handAminClick= ()=>{
+      isAmin.value = !isAmin.value;
+    }
     return{
-      isOpen,handOpenClass,handCallBackFn,handTimeOut
+      // isOpen,handOpenClass,handCallBackFn,handTimeOut
+      isAmin,handAminClick
     }
   }
 }
 </script>
 <template>
- <TitleBar :handOpenClass="handOpenClass" />
+ <!-- <TitleBar :handOpenClass="handOpenClass" />
  <ListItem :isOpen="isOpen" />
- <EmitTest @CallBack="handCallBackFn" />
+ <EmitTest @CallBack="handCallBackFn" /> -->
  <!-- 從子層接 -->
- <TimerBox @TimeOut="handTimeOut" /> 
+ <!-- <TimerBox @TimeOut="handTimeOut" />  -->
+
+ <button @click="handAminClick">click</button>
+   <transition name="fade">
+    <div v-if="isAmin" id="box"></div>
+  </transition>
 </template>
 
 <style lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from{
+  opacity: 0;
+}
+.fade-enter-to{
+  opacity: 1;
+}
+.fade-leave-from {
+  opacity: 1;
+} 
+.fade-leave-to {
+  opacity: 0;
+} 
+
+
       * {
         padding: 0;
         margin: 0;
@@ -46,10 +77,16 @@ export default {
         height: 100%;
         background-color: slategray;
       }
-      #app {
-        width: 400px;
-        overflow: hidden;
-        border: 1px solid #42b983;
-        border-radius: 10px;
+      // #app {
+      //   width: 400px;
+      //   overflow: hidden;
+      //   border: 1px solid #42b983;
+      //   border-radius: 10px;
+      // }
+
+      #box{
+        width: 100px;
+        height: 100px;
+        background-color: red;
       }
 </style>
