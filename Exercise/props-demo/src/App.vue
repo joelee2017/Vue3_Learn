@@ -5,9 +5,10 @@ import ListItem from "@/components/ListItem.vue"
 import EmitTest from "@/components/EmitTest.vue"
 import TimerBox from "@/components/TimerBox.vue"
 import EventBack from "@/components/EventBack.vue"
+import TemplateRefs from "@/components/TemplateRefs.vue"
 import { ref } from 'vue';
 export default {
-  components:{ TitleBar,  ListItem,  EmitTest,  TimerBox, EventBack },
+  components:{ TitleBar,  ListItem,  EmitTest,  TimerBox, EventBack,TemplateRefs },
   setup(){    
 
     // const isAmin = ref(false);
@@ -39,7 +40,7 @@ export default {
  <!-- 從子層接 -->
  <TimerBox @TimeOut="handTimeOut" /> 
  <EventBack />
-
+<TemplateRefs />
  <!-- <button @click="handAminClick">click</button>
    
     <div v-if="isAmin" id="box"></div>

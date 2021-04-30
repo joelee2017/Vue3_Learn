@@ -11,7 +11,7 @@ export default {
   <a @click="handClickFn(100,$event)" href="javascript:;">click</a>
 </template>
 <style scoped>
-a{
+a{ 
     font-size: 50px;
     color: #fff;
 }
