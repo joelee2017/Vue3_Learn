@@ -4,7 +4,7 @@ import ListItem from "@/components/ListItem.vue";
 import TimerBox from "@/components/TimerBox.vue";
 import EventBack from "@/components/EventBack.vue";
 import TemplateRefs from "@/components/TemplateRefs.vue";
-
+import SlotsTitle from "@/components/SlotsTitle.vue";
 import { ref } from "vue";
 export default {
   components: {
@@ -13,6 +13,7 @@ export default {
     TimerBox,
     EventBack,
     TemplateRefs,
+    SlotsTitle
   },
   setup() {
     // const isAmin = ref(false);
@@ -49,8 +50,8 @@ export default {
 
   <!-- <EventBack /> -->
 
-  <TemplateRefs />
-
+  <!-- <TemplateRefs /> -->
+<SlotsTitle />>
   <!-- 
     <button>click</button>
     <transition name="fade">

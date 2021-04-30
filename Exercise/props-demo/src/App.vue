@@ -6,9 +6,10 @@ import EmitTest from "@/components/EmitTest.vue"
 import TimerBox from "@/components/TimerBox.vue"
 import EventBack from "@/components/EventBack.vue"
 import TemplateRefs from "@/components/TemplateRefs.vue"
+import SlotsTitle from "@/components/SlotsTitle.vue";
 import { ref } from 'vue';
 export default {
-  components:{ TitleBar,  ListItem,  EmitTest,  TimerBox, EventBack,TemplateRefs },
+  components:{ TitleBar,  ListItem,  EmitTest,  TimerBox, EventBack,TemplateRefs,SlotsTitle },
   setup(){    
 
     // const isAmin = ref(false);
@@ -33,7 +34,7 @@ export default {
 }
 </script>
 <template>
- <TitleBar :handOpenClass="handOpenClass" />
+ <TitleBar :handOpenClass="handOpenClass" /> 
  <ListItem :isOpen="isOpen" />
  <EmitTest @CallBack="handCallBackFn" />
   
@@ -41,6 +42,11 @@ export default {
  <TimerBox @TimeOut="handTimeOut" /> 
  <EventBack />
 <TemplateRefs />
+ <!-- 命名用小寫駝峰能將html內容傳入子層slot中 嵌套compents -->
+<slots-title>
+  <div><a href="">JOE</a></div>
+</slots-title>
+<slots-title>JOE2</slots-title>
  <!-- <button @click="handAminClick">click</button>
    
     <div v-if="isAmin" id="box"></div>
