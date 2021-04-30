@@ -15,6 +15,11 @@ app.directive('price',{
         const p = numPrice(binding.value);
         //console.log('binding=> ',binding.value);
         el.innerHTML = p;
+    },
+    // 當值改變就會觸發使用 updated
+    updated(el, binding){
+        const p = numPrice(binding.value);
+        el.innerHTML = p;
     }
 })
 app.mount('#app')

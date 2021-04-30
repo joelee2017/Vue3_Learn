@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 export default {
     setup(){
        // const textInput = ref(null);
+       const num = ref(123456789);
         onMounted(()=>{
             // 在vue中不推廌使用 document
             // document.getElementById('textBar').focus();
@@ -11,14 +12,15 @@ export default {
             // textInput.value.focus();
         })
         return{ 
-            // textInput 
+            // textInput
+            num
             } 
     }
 }
 </script>
 <template>
-  <input v-focus ref="textInput" id="textBar" type="text" placeholder="input text">
-  <h1 v-price="123456789"></h1>
+  <input v-focus v-model="num" ref="textInput" id="textBar" type="text" placeholder="input text">
+  <h1 v-price="num"></h1>
 </template>
 <style>
 input{
