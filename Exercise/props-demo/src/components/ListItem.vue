@@ -22,23 +22,44 @@ setup(props){
 }
 </script>
 <template>
-  <ul :class="['box',{open: props.isOpen}]">
+ <transition name="open">
+  <ul v-if="props.isOpen" class="box">
         <li v-for="(list, idx) in listArr" :key="list.name">
           {{idx + 1}}. {{list.name}}
         </li>
       </ul>
+    </transition>
 </template>
 <style>
+.open-enter-active,
+.open-leave-active {
+  transition: height 0.5s ease;
+}
+
+.open-enter-from{
+  height: 0px;
+}
+.open-enter-to{
+  height: 200px;
+}
+.open-leave-from {
+  height: 200px;
+}
+
+.open-leave-to {
+ height: 0px;
+}
+
   .box {
         display: block;
         width: 100%;
-        height: 0;
+        /* height: 0; */
         background-color: snow;
         transition: height 0.4s;
       }
-      .box.open {
+      /* .box.open {
         height: 200px;
-      }
+      } */
       .box > li {
         display: flex;
         justify-content: center;
