@@ -1,12 +1,25 @@
 <script>
 import { onMounted, ref } from 'vue'
 export default {
-    setup(){
+    emits:{//可預先聲明，驗證邏輯
+        TimeOut:(num)=>{
+            if(num.value===0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    },
+    setup(props, {emit}){
         const num =ref(5);
-
+        let timer = null;
         onMounted(()=>{
             setInterval(()=>{
                 num.value--;
+                if(num.value === 0){ // 關閉讀秒
+                    clearInterval(timer);
+                    emit('TimeOut', num); // 往上傳
+                }
             },1000)
         })
         return{

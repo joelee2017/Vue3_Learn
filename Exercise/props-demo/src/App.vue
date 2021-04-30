@@ -15,9 +15,10 @@ export default {
         console.log(isOpen.value);
       };
 
-    const handCallBackFn = (num)=>{console.log("app=>", num)};
+    const handCallBackFn = (num)=>{ console.log("app=>", num) };
+    const handTimeOut =(num)=>{ console.log("time is over", num.value); };
     return{
-      isOpen,handOpenClass,handCallBackFn
+      isOpen,handOpenClass,handCallBackFn,handTimeOut
     }
   }
 }
@@ -26,7 +27,8 @@ export default {
  <TitleBar :handOpenClass="handOpenClass" />
  <ListItem :isOpen="isOpen" />
  <EmitTest @CallBack="handCallBackFn" />
- <TimerBox />
+ <!-- 從子層接 -->
+ <TimerBox @TimeOut="handTimeOut" /> 
 </template>
 
 <style lang="scss">
