@@ -3,22 +3,19 @@
 import TitleBar from "@/components/TitleBar.vue"
 import ListItem from "@/components/ListItem.vue"
 import EmitTest from "@/components/EmitTest.vue"
+import TimerBox from "@/components/TimerBox.vue"
 import { ref } from 'vue';
 export default {
-  components:{
-    TitleBar,
-    ListItem,
-    EmitTest
-  },
+  components:{ TitleBar,  ListItem,  EmitTest,  TimerBox },
   setup(){    
     //共用參數建議放在父層上，傳於子層時較方便。
-     const isOpen = ref(true);
+    const isOpen = ref(true);
     const handOpenClass = () => {
         isOpen.value = !isOpen.value;
         console.log(isOpen.value);
       };
 
-      const handCallBackFn = (num)=>{console.log("app=>", num)};
+    const handCallBackFn = (num)=>{console.log("app=>", num)};
     return{
       isOpen,handOpenClass,handCallBackFn
     }
@@ -29,6 +26,7 @@ export default {
  <TitleBar :handOpenClass="handOpenClass" />
  <ListItem :isOpen="isOpen" />
  <EmitTest @CallBack="handCallBackFn" />
+ <TimerBox />
 </template>
 
 <style lang="scss">
