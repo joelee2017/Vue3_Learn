@@ -2,20 +2,22 @@
 import { onMounted, ref } from 'vue'
 export default {
     setup(){
-        const textInput = ref(null);
+       // const textInput = ref(null);
         onMounted(()=>{
             // 在vue中不推廌使用 document
             // document.getElementById('textBar').focus();
             // 建議改用ref 綁定
-            console.log("textInput=> ",textInput);
-            textInput.value.focus();
+            // console.log("textInput=> ",textInput);
+            // textInput.value.focus();
         })
-        return{textInput}
+        return{ 
+            // textInput 
+            } 
     }
 }
 </script>
 <template>
-  <input ref="textInput" id="textBar" type="text" placeholder="input text">
+  <input v-focus ref="textInput" id="textBar" type="text" placeholder="input text">
 </template>
 <style>
 input{
