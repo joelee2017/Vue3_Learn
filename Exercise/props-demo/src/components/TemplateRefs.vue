@@ -18,6 +18,7 @@ export default {
 </script>
 <template>
   <input v-focus ref="textInput" id="textBar" type="text" placeholder="input text">
+  <h1 v-price="123456789"></h1>
 </template>
 <style>
 input{
