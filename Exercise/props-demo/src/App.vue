@@ -44,23 +44,38 @@ export default {
 </template>
 
 <style lang="scss">
-.fade-enter-active,
+.fade-enter-active{
+   animation: bounce-in 0.5s;
+}
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  // transition: opacity 0.5s ease;
+  animation: bounce-in 0.5s reverse;
 }
 
-.fade-enter-from{
-  opacity: 0;
+// .fade-enter-from{
+//   opacity: 0;
+// }
+// .fade-enter-to{
+//   opacity: 1;
+// }
+// .fade-leave-from {
+//   opacity: 1;
+// } 
+// .fade-leave-to {
+//   opacity: 0;
+// } 
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
-.fade-enter-to{
-  opacity: 1;
-}
-.fade-leave-from {
-  opacity: 1;
-} 
-.fade-leave-to {
-  opacity: 0;
-} 
 
 
       * {
