@@ -4,9 +4,10 @@ import TitleBar from "@/components/TitleBar.vue"
 import ListItem from "@/components/ListItem.vue"
 import EmitTest from "@/components/EmitTest.vue"
 import TimerBox from "@/components/TimerBox.vue"
+import EventBack from "@/components/EventBack.vue"
 import { ref } from 'vue';
 export default {
-  components:{ TitleBar,  ListItem,  EmitTest,  TimerBox },
+  components:{ TitleBar,  ListItem,  EmitTest,  TimerBox, EventBack },
   setup(){    
 
     // const isAmin = ref(false);
@@ -34,12 +35,13 @@ export default {
  <TitleBar :handOpenClass="handOpenClass" />
  <ListItem :isOpen="isOpen" />
  <EmitTest @CallBack="handCallBackFn" />
- 
+  
  <!-- 從子層接 -->
  <TimerBox @TimeOut="handTimeOut" /> 
+ <EventBack />
 
  <!-- <button @click="handAminClick">click</button>
-   <transition name="fade">
+   
     <div v-if="isAmin" id="box"></div>
   </transition> -->
 </template>
