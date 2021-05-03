@@ -1,2 +1,4 @@
 [submodule "Exercise/vue-test-joe"]
 	url = https://github.com/joelee2017/Vue3_Learn.git
+[submodule "Exercise/vue-test-joe-Router"]
+	url = https://github.com/joelee2017/Vue3_Learn.git
