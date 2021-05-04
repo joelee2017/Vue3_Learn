@@ -19,7 +19,7 @@ export default {
 </script>
 <template>
   <div id="courses">
-    <a class="card" v-for="item in coursesList.data" :key="item.id">
+    <router-link class="card" v-for="item in coursesList.data" :key="item.id" :to="`/Courses/${item.id}`">
       <img :src="item.photo" alt="" />
       <div class="content">
         <h1>{{item.name}}</h1>
@@ -31,7 +31,7 @@ export default {
           <h2>NTD:{{item.money}}</h2>
         </div>
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 
