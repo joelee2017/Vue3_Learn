@@ -1,22 +1,34 @@
 <script>
+import axios from "axios";
+import { onMounted, reactive } from 'vue';
 export default {
   setup() {
-    return {};
+    const coursesList = reactive({data:{}});
+    onMounted(()=>{
+      axios
+        .get("https://vue-lessons-api.herokuapp.com/courses/list")
+        .then((res) => {
+          coursesList.data =res.data;
+          console.log("coursesList.data=> ",coursesList.data)
+        });
+    })
+
+    return {coursesList};
   },
 };
 </script>
 <template>
   <div id="courses">
-    <a class="card">
-      <img src="" alt="" />
+    <a class="card" v-for="item in coursesList.data" :key="item.id">
+      <img :src="item.photo" alt="" />
       <div class="content">
-        <h1></h1>
+        <h1>{{item.name}}</h1>
         <div class="teacher-box">
           <div class="teach-img">
-            <img class="teacher" src="" alt="" />
-            <p></p>
+            <img class="teacher" :src="item.teacher.img" alt="" />
+            <p>{{item.teacher.name}}</p>
           </div>
-          <h2>NTD:</h2>
+          <h2>NTD:{{item.money}}</h2>
         </div>
       </div>
     </a>
