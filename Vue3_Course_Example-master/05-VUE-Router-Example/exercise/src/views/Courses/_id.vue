@@ -1,6 +1,19 @@
 <script>
+import { onMounted, reactive } from 'vue';
+import {useRoute} from "vue-router"
+import axios from "axios"
 export default {
   setup() {
+    const route=useRoute();
+    const courses = reactive({data:{}});
+    onMounted(()=>{
+      // console.log("route=> ",route.params.id)
+      axios.get(`https://vue-lessons-api.herokuapp.com/courses/${route.params.id}`).then((res)=>{
+        //console.log(res);
+        courses.data = res.data[0];
+        console.log('courses.data=> ',courses.data);
+      }) 
+    })
     return {};
   },
 };
