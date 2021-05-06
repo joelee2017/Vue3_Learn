@@ -1,9 +1,16 @@
 <script>
 import axios from "axios";
 import { onMounted, reactive } from 'vue';
+import {useRouter} from "vue-router";
 export default {
   setup() {
     const coursesList = reactive({data:{}});
+    const router = useRouter();
+    // 用 useRouter 達到轉導頁
+    const gotoNewRouter = (id)=>{
+      // 可以在此段做一些做其它處理
+      router.push({path:`/Courses/${id}`})
+    }
     onMounted(()=>{
       axios
         .get("https://vue-lessons-api.herokuapp.com/courses/list")
@@ -13,13 +20,13 @@ export default {
         });
     })
 
-    return {coursesList};
+    return {coursesList,gotoNewRouter};
   },
 };
 </script>
 <template>
   <div id="courses">
-    <router-link class="card" v-for="item in coursesList.data" :key="item.id" :to="`/Courses/${item.id}`">
+    <a class="card" v-for="item in coursesList.data" :key="item.id" @click="gotoNewRouter(item.id)">
       <img :src="item.photo" alt="" />
       <div class="content">
         <h1>{{item.name}}</h1>
@@ -31,7 +38,7 @@ export default {
           <h2>NTD:{{item.money}}</h2>
         </div>
       </div>
-    </router-link>
+    </a>
   </div>
 </template>
 
