@@ -1,5 +1,5 @@
 <script>
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, onUnmounted, reactive, ref } from 'vue';
 import {useRoute, useRouter} from "vue-router";
 import axios from "axios";
 export default {
@@ -8,6 +8,7 @@ export default {
     const router = useRouter();
     const isError = ref(false);
     const courses = reactive({ data: {} });
+    let timer = null
     onMounted(()=>{
       // console.log("route=> ",route.params.id)
       axios
@@ -20,15 +21,19 @@ export default {
           console.log("error=> ",error);
         isError.value = true;
         courses.data['error_message'] = error.response.data.error_message;      
-        setTimeout(()=>{
+        timer = setTimeout(()=>{
           //透過程式的方式轉導頁，加上setTimeout時間自動轉導
           //router.push('/Courses');
-          //router.push({path:'/Courses'});//{物件形式寫法} 比起上方此方法較精確
-
-          router.go(-1); // 簡易是回上一頁
+          router.push({path:'/Courses'});//{物件形式寫法} 比起上方此方法較精確
+          //router.go(-1); // 簡易是回上一頁
         }, 3000)
       });
     })
+    // 關閉setTimeout
+    onUnmounted(()=>{
+      clearTimeout(timer);
+    })
+
     return {courses,isError};
   },
 };
