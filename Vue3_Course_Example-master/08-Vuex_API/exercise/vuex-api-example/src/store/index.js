@@ -8,17 +8,26 @@ export default createStore({
   },
   actions: {
     handInit({commit}){
-      axios.get('https://vue-lessons-api.herokuapp.com/photo/list')
+     console.log('1');
+     return  axios.get('https://vue-lessons-api.herokuapp.com/photo/list')
       .then((res)=> {
+        console.log('2');
         console.log(res.data);
         commit('init', res.data);
+        return res.data;
       })
+    },
+    handLoadState({commit}, bool){
+      commit('loadState',bool);
     }
   },
   mutations: {
     init(state, payload){
       state.photoArr = payload;
       console.log('mutations state.photoArr=> ',state.photoArr);
+    },
+    loadState(state, bool){
+      state.isLoad = bool;
     }
   },
   getters: {
