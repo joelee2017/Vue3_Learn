@@ -1,13 +1,23 @@
 <script>
+import { computed } from 'vue';
+import {useStore} from "vuex";
 export default {
   setup() {
-    const handClickMenu = () => {};
-    return { handClickMenu };
+    const store = useStore();
+
+    //請勿將 store 直接丟到頁面上，此處用computed包裝
+    const isOpen = computed(()=>{
+      return store.getters.isOpen;
+    });
+    const handClickMenu = () => {
+      console.log(isOpen);
+    };
+    return { handClickMenu, isOpen };
   },
 };
 </script>
 <template>
-  <div class="menu open">
+  <div :class="['menu', { open: isOpen }]">
     <a class="closeBtn" @click="handClickMenu">
       <i class="fas fa-times fa-3x"></i>
     </a>
