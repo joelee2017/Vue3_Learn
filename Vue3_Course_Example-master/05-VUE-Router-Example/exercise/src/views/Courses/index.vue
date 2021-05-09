@@ -5,12 +5,21 @@ import {useRouter} from "vue-router";
 export default {
   setup() {
     const coursesList = reactive({data:{}});
-    const router = useRouter();
+    const router = useRouter();    
     // 用 useRouter 達到轉導頁
     const gotoNewRouter = (id)=>{
       // 可以在此段做一些做其它處理
       router.push({path:`/Courses/${id}`})
     }
+
+    // 左鍵開啟分頁
+    const openNewTab =(id)=>{
+      // resolve 儲存當前url
+      const saveUrl = router =resolve({ path:`/Courses/${id}`});
+      // 透過 window.open 來執行 saveUrl中的href
+      window.open(saveUrl.href, "_blank");
+    }
+
     onMounted(()=>{
       axios
         .get("https://vue-lessons-api.herokuapp.com/courses/list")
@@ -20,13 +29,16 @@ export default {
         });
     })
 
-    return {coursesList,gotoNewRouter};
+    return {coursesList,gotoNewRouter,openNewTab};
   },
 };
 </script>
 <template>
   <div id="courses">
-    <a class="card" v-for="item in coursesList.data" :key="item.id" @click="gotoNewRouter(item.id)">
+    <a class="card" v-for="item in coursesList.data" 
+     :key="item.id" 
+     @click.left="gotoNewRouter(item.id)"
+     @click.middle="openNewTab(item.id)">
       <img :src="item.photo" alt="" />
       <div class="content">
         <h1>{{item.name}}</h1>
