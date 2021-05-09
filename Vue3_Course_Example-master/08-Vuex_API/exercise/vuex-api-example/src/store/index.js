@@ -9,6 +9,7 @@ export default createStore({
   actions: {
     handInit({commit}){
      console.log('1');
+     // axios 是可以return的
      return  axios.get('https://vue-lessons-api.herokuapp.com/photo/list')
       .then((res)=> {
         console.log('2');
@@ -19,7 +20,13 @@ export default createStore({
     },
     handLoadState({commit}, bool){
       commit('loadState',bool);
-    }
+    },
+    handAdd({commit}){
+      commit('Add');
+    },
+    andRemove({commit}){
+      commit('Remove');
+    },
   },
   mutations: {
     init(state, payload){
@@ -28,7 +35,19 @@ export default createStore({
     },
     loadState(state, bool){
       state.isLoad = bool;
-    }
+    },
+    Add(state){
+      state.idx++;
+      if (state.idx > state.photoArr.length - 1) {
+        state.idx = 0;
+      }
+    },
+    Remove(state){
+      state.idx--;
+      if (state.idx < 0) {
+        state.idx = state.photoAr.length - 1;
+      }
+    },
   },
   getters: {
     isLoad(state) {
