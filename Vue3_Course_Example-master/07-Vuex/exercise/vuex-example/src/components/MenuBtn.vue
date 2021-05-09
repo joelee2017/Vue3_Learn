@@ -7,6 +7,8 @@ export default {
     const handClickMenu = () => { 
       // store 中的 actions ，在呼叫 mutations 改變資料狀態
       store.dispatch("handMenuOpen");
+     // 以下在習慣來說，為不好的寫法
+     // context.commit('handOpenState',true);
     };
 
     return { handClickMenu };
