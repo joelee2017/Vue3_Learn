@@ -1,4 +1,6 @@
 <script>
+import { onMounted } from 'vue';
+import {useStore} from "vuex";
 import MenuBtn from "../src/components/MenuBtn.vue";
 import MenuSlid from "../src/components/MenuSlid.vue";
 export default {
@@ -7,6 +9,17 @@ export default {
     MenuSlid,
   },
   setup() {
+    const store = useStore();
+
+    onMounted(()=>{
+       // store.getters 可透過路徑指定
+      console.log('A=> ',store.getters['Auth/getToken']);
+      // dispatch 可透過路徑指定
+      store.dispatch('Auth/handSetToken', 'aaaaa');
+      //console.log('B=> ',store.getters.getToken);
+      // 改用指定路徑
+      console.log('B=> ',store.getters['Auth/getToken']);
+    })
     return {};
   },
 };

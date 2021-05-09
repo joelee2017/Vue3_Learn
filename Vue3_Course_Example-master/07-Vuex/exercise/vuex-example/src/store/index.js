@@ -5,6 +5,8 @@ import state from "./state.js"
 import actions from "./actions.js"
 import mutations from "./mutations.js"
 import getters from "./getters.js"
+
+import Auth from"./Auth"
 export default createStore({
   state,
   // 觸發 mutations 要使用 actions
@@ -12,4 +14,7 @@ export default createStore({
   // 切記要改變資料只能在 mutations 中
   mutations,
   getters,
+  modules:{
+    Auth
+  }
 });
