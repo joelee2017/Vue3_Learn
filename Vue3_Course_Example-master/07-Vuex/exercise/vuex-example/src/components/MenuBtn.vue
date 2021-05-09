@@ -1,7 +1,13 @@
 <script>
+import {useStore} from "vuex";
 export default {
   setup() {
-    const handClickMenu = () => {};
+    const store = useStore();
+
+    const handClickMenu = () => { 
+      // store 中的 actions ，在呼叫 mutations 改變資料狀態
+      store.dispatch("handMenuOpen");
+    };
 
     return { handClickMenu };
   },
