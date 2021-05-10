@@ -8,13 +8,21 @@ export default createStore({
     isLoad: false,
   },
   actions: {
-    handInit({commit}){
-      const res =apiGetPhotoRequest();
+  // es7 async & await
+  async  handInit({commit}){
+    try{
+      const res = await apiGetPhotoRequest();
       console.log(res);
-     return  res.then((response)=>{
-        commit('init', response.data);
-        return response.data;
-      })
+      commit('init', res.data);
+      return res.data;
+    }catch(error){
+      console.error(error.response.data);
+    }
+
+    //  return  res.then((response)=>{
+    //     commit('init', response.data);
+    //     return response.data;
+    //   })
      console.log('1');
      // axios 是可以return的
     //  return  axios.get('https://vue-lessons-api.herokuapp.com/photo/list')
@@ -52,7 +60,7 @@ export default createStore({
     Remove(state){
       state.idx--;
       if (state.idx < 0) {
-        state.idx = state.photoAr.length - 1;
+        state.idx = state.photoArr.length - 1;
       }
     },
   },
