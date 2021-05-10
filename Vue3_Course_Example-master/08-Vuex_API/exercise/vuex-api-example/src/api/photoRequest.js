@@ -10,6 +10,7 @@ export const getPhotoRequest = () => photoRequest.get("/photo/list");
 // Add a request interceptor
 photoRequest.interceptors.request.use( (config)=> {
     // Do something before request is sent
+    // 包裝好讓前方拿的時侯可以直接取得
     if(true) throw{response:{data:"資料不得為空"}}
     console.log('interceptors request=> ',config);
     return config;
