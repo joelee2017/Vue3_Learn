@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
-import axios from "axios";
+// import axios from "axios";
+import {apiGetPhotoRequest } from "../api";
 export default createStore({
   state: {
     photoArr: [],
@@ -8,15 +9,21 @@ export default createStore({
   },
   actions: {
     handInit({commit}){
+      const res =apiGetPhotoRequest();
+      console.log(res);
+     return  res.then((response)=>{
+        commit('init', response.data);
+        return response.data;
+      })
      console.log('1');
      // axios 是可以return的
-     return  axios.get('https://vue-lessons-api.herokuapp.com/photo/list')
-      .then((res)=> {
-        console.log('2');
-        console.log(res.data);
-        commit('init', res.data);
-        return res.data;
-      })
+    //  return  axios.get('https://vue-lessons-api.herokuapp.com/photo/list')
+    //   .then((res)=> {
+    //     console.log('2');
+    //     console.log(res.data);
+    //     commit('init', res.data);
+    //     return res.data;
+    //   })
     },
     handLoadState({commit}, bool){
       commit('loadState',bool);
