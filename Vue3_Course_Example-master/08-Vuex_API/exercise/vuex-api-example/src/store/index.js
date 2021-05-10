@@ -16,7 +16,11 @@ export default createStore({
       commit('init', res.data);
       return res.data;
     }catch(error){
+      // 現在也能取得後端傳來的錯誤訊息了
       console.error(error.response.data);
+      // console.error(error);
+      // console.error(error.error);
+      // alert(error.error);
     }
 
     //  return  res.then((response)=>{
