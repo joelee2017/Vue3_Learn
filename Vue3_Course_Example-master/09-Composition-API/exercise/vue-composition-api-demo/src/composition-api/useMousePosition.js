@@ -1,11 +1,19 @@
-import { onMounted,onUnmounted, ref} from "vue";
+import { onMounted, toRefs,onUnmounted, ref, reactive} from "vue";
 
 export function MousePosition(){
-    const x =ref(0);
-    const y =ref(0);
+    // const x =ref(0);
+    // const y =ref(0);
+
+    const pos =reactive({
+        x:0,
+        y:0
+    })
+
+    const name = ref('joe');
+
     const posUpdate =(e)=>{
-        x.value = e.pageX;
-        y.value = e.pageY;
+        pos.x = e.pageX;
+        pos.y = e.pageY;
     }
 
     onMounted(() => {
@@ -15,6 +23,9 @@ export function MousePosition(){
     onUnmounted(() => {
         window.removeEventListener('mousemove',posUpdate);
     })
-
-    return {x,y};
+    // 可以讓外部直接用使用解構呼叫
+    return { 
+        ...toRefs(pos),
+        name
+    };
 }
