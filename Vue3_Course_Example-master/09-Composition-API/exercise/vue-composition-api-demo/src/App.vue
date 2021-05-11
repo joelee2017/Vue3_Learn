@@ -13,8 +13,9 @@ export default {
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <MousePosition />
-  <!-- <StateTodo /> -->
-  <!-- <StateTodo /> -->
+  <StateTodo />
+   <!-- 該封裝方式區域是切開的 -->
+  <StateTodo />
   <!-- <FetchData /> -->
 </template>
 
