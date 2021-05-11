@@ -16,7 +16,7 @@ export default {
   <StateTodo />
    <!-- 該封裝方式區域是切開的 -->
   <StateTodo />
-  <!-- <FetchData /> -->
+  <FetchData />
 </template>
 
 <style lang="scss">
